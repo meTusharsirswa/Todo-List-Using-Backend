@@ -1,0 +1,41 @@
+<!-- Head  -->
+<%- include('./layout/Head.ejs') %>
+    <!-- Navbar -->
+    <%- include('./layout/Navbar.ejs') %>
+
+        <div class="container">
+            <div class="main mt-5">
+                <form action="/posts/store" method="post" class="mb-5">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="title" placeholder="Todo Here"
+                            required />
+                        <label for="floatingInput">Create Todo:</label>
+                        <div id="emailHelp" class="form-text">
+                            What are you Thinking Write here.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="createTodo">
+                        Submit
+                    </button>
+                </form>
+                <% todos.forEach((todo)=>{ %>
+                    <form action="/" method="post">
+                        <p class="error"></p>
+                        <div class="post-preview">
+                            <h2  class="todo_title form-control">
+                                <%= todo.title %>
+                            </h2>
+                            <button  class="deletebtn" name="deletebtn" value="<%=todo._id %>"
+                                onchange="this.form.submit()" type="submit">
+                                <img class="trashimg" src="../img/trash.png" alt="">
+                            </button>
+
+                        </div>
+                    </form>
+                    <% }) %>
+
+                        <div></div>
+            </div>
+        </div>
+        <%- include('./layout/script.ejs') %>
